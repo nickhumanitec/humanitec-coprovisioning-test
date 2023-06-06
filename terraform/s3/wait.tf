@@ -1,6 +1,6 @@
 resource "random_integer" "wait" {
   min = 1
-  max = 120
+  max = 10
 }
 resource "null_resource" "previous" {}
 resource "time_sleep" "wait" {
