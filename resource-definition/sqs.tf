@@ -4,6 +4,17 @@ resource "humanitec_resource_definition" "sqs" {
   name        = "${local.app}-sqs"
   type        = "postgres"
 
+  provision = {
+    # "aws-policy" = {
+    #   "is_dependent" : false,
+    #   "match_dependents" : false
+    # }
+    "aws-policy#${local.app}-sqspolicy" = {
+      "is_dependent" : true,
+      "match_dependents" : true
+    }
+  }
+
   driver_inputs = {
     secrets = {
       variables = jsonencode({

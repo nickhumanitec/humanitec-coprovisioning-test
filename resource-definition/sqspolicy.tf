@@ -20,7 +20,8 @@ resource "humanitec_resource_definition" "sqspolicy" {
       )
       "variables" = jsonencode(
         {
-          url = "$${resources['sqs#${local.app}-sqs'].outputs.url}"
+          # url = "$${resources['sqs#${local.app}-sqs'].outputs.url}"
+          url = "$${resources['aws-policy>postgres'].outputs.url}"
           app = "$${context.app.id}"
           env = "$${context.env.id}"
           res = "$${context.res.id}"
@@ -29,6 +30,11 @@ resource "humanitec_resource_definition" "sqspolicy" {
     }
   }
 
+  lifecycle {
+    ignore_changes = [
+      criteria
+    ]
+  }
 }
 
 resource "humanitec_resource_definition_criteria" "sqspolicy" {
