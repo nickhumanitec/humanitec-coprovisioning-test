@@ -31,7 +31,8 @@ resource "humanitec_resource_definition" "sqspolicy" {
 
 }
 
-# resource "humanitec_resource_definition_criteria" "sqspolicy" {
-#   resource_definition_id = humanitec_resource_definition.sqspolicy.id
-#   app_id                 = humanitec_application.app.id
-# }
+resource "humanitec_resource_definition_criteria" "sqspolicy" {
+  resource_definition_id = humanitec_resource_definition.sqspolicy.id
+  app_id                 = humanitec_application.app.id
+  res_id                 = "${local.app}-sqspolicy"
+}
