@@ -11,10 +11,13 @@ output "aws_access_key_id" {
   value = ""
 }
 
+resource "aws_s3_bucket" "b" {
+}
+
 output "region" {
-  value = "ca-central-1"
+  value = var.region
 }
 
 output "bucket" {
-  value = "arn:aws:s3:::${lower(random_string.random.result)}"
+  value = aws_s3_bucket.b.arn
 }

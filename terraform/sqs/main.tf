@@ -4,12 +4,15 @@ resource "random_string" "random" {
 }
 
 output "region" {
-  value = "ca-central-1"
+  value = var.region
 }
+resource "aws_sqs_queue" "q" {
+}
+
 output "arn" {
-  value = "arn:aws:sqs:ca-central-1:123456789012:${lower(random_string.random.result)}"
+  value = aws_sqs_queue.q.arn
 }
 
 output "url" {
-  value = "https://sqs.ca-central-1.amazonaws.com/123456789012/${lower(random_string.random.result)}"
+  value = aws_sqs_queue.q.url
 }

@@ -9,8 +9,21 @@ resource "random_string" "random" {
   special = false
 }
 
-output "arn" {
+data "aws_iam_policy_document" "policy" {
 
-  value = "arn:aws:iam::123456789012:policy/sqs-${lower(random_string.random.result)}"
-  # value = "arn:aws:iam::123456789012:policy/${reverse(split("/", var.url))[0]}"
+  statement {
+    actions = [
+      "sqs:*",
+    ]
+
+    resources = var.arns
+  }
+}
+
+resource "aws_iam_policy" "policy" {
+  policy = data.aws_iam_policy_document.policy.json
+}
+
+output "arn" {
+  value = aws_iam_policy.policy.arn
 }
