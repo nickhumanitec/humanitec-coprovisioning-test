@@ -40,5 +40,5 @@ resource "humanitec_resource_definition" "s3policy" {
 resource "humanitec_resource_definition_criteria" "s3policy" {
   resource_definition_id = humanitec_resource_definition.s3policy.id
   app_id                 = humanitec_application.app.id
-  # res_id                 = "${local.app}-s3policy"
+  res_id                 = "${local.app}-s3policy"
 }

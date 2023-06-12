@@ -17,14 +17,14 @@ resources:
     type: s3
     properties:
       bucket:
-  # "myothers3":
-  #   type: s3
+  "myothers3":
+    type: s3
 
-  # "mysqs":
-  #   type: sqs
-  #   properties:
-  #     url:
-  # "myothersqs":
-  #   type: sqs
-  #   properties:
-  #     url:
+  "mysqs":
+    type: sqs
+    properties:
+      url:
+  "myothersqs":
+    type: sqs
+    properties:
+      url:

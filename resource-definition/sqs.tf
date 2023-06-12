@@ -1,18 +1,14 @@
-resource "humanitec_resource_definition" "s3" {
+resource "humanitec_resource_definition" "sqs" {
   driver_type = "${var.humanitec_organization}/terraform"
-  id          = "${local.app}-s3"
-  name        = "${local.app}-s3"
-  type        = "s3"
+  id          = "${local.app}-sqs"
+  name        = "${local.app}-sqs"
+  type        = "sqs"
 
   provision = {
-    "aws-policy#${local.app}-s3policy" = {
+    "aws-policy#${local.app}-sqspolicy" = {
       "is_dependent" : true,
       "match_dependents" : true
     }
-    # "aws-policy" = {
-    #   "is_dependent" : true,
-    #   "match_dependents" : true
-    # }
   }
 
   driver_inputs = {
@@ -24,7 +20,7 @@ resource "humanitec_resource_definition" "s3" {
     values = {
       "source" = jsonencode(
         {
-          path = "terraform/s3/"
+          path = "terraform/sqs/"
           rev  = "refs/heads/main"
           url  = "https://github.com/nickhumanitec/humanitec-coprovisioning-test.git"
         }
@@ -43,11 +39,10 @@ resource "humanitec_resource_definition" "s3" {
       criteria
     ]
   }
+
 }
 
-
-
-resource "humanitec_resource_definition_criteria" "s3" {
-  resource_definition_id = humanitec_resource_definition.s3.id
+resource "humanitec_resource_definition_criteria" "sqs" {
+  resource_definition_id = humanitec_resource_definition.sqs.id
   app_id                 = humanitec_application.app.id
 }
