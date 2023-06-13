@@ -1,3 +1,8 @@
 humanitec_organization = "xxx"
 humanitec_token        = "xxx"
-app                    = "copro3"
+app                    = "xx"
+
+access_key   = "xxx"
+secret_key   = "xxx"
+region       = "ca-central-1"
+cluster_oidc = "xxx"
