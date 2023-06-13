@@ -31,3 +31,9 @@ resource "humanitec_application" "app" {
   id   = local.app
   name = local.app
 }
+
+
+variable "region" {}
+variable "access_key" {}
+variable "secret_key" {}
+variable "cluster_oidc" {}

@@ -7,23 +7,27 @@ resource "humanitec_resource_definition" "role" {
   driver_inputs = {
     secrets = {
       variables = jsonencode({
-
+        access_key = var.access_key
+        secret_key = var.secret_key
       })
     },
     values = {
       "source" = jsonencode(
         {
           path = "terraform/role/"
-          rev  = "refs/heads/main"
+          rev  = "refs/heads/aws"
           url  = "https://github.com/nickhumanitec/humanitec-coprovisioning-test.git"
         }
       )
       "variables" = jsonencode(
         {
-          policy_arns = "$${resources.workload>aws-policy.outputs.arn}"
-          app         = "$${context.app.id}"
-          env         = "$${context.env.id}"
-          res         = "$${context.res.id}"
+          region       = var.region
+          cluster_oidc = var.cluster_oidc
+          policy_arns  = "$${resources.workload>aws-policy.outputs.arn}"
+          app          = "$${context.app.id}"
+          env          = "$${context.env.id}"
+          res          = "$${context.res.id}"
+          app_name     = local.app
         }
       )
     }
