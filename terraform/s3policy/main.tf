@@ -33,8 +33,10 @@ data "aws_iam_policy_document" "policy" {
   }
 }
 
+variable "app_name" {}
 resource "aws_iam_policy" "policy" {
-  policy = data.aws_iam_policy_document.policy.json
+  name_prefix = var.app_name
+  policy      = data.aws_iam_policy_document.policy.json
 }
 
 output "arn" {

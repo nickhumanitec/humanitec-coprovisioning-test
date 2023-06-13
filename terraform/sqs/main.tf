@@ -6,7 +6,10 @@ resource "random_string" "random" {
 output "region" {
   value = var.region
 }
+
+variable "app_name" {}
 resource "aws_sqs_queue" "q" {
+  name_prefix = var.app_name
 }
 
 output "arn" {
