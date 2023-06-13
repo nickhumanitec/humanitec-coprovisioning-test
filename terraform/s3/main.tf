@@ -13,7 +13,8 @@ output "aws_access_key_id" {
 
 variable "app_name" {}
 resource "aws_s3_bucket" "b" {
-  name_prefix = var.app_name
+  bucket_prefix = var.app_name
+
 }
 
 output "region" {
